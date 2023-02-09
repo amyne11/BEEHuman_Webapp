@@ -11,7 +11,10 @@ html, body {
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  background: #f3f2f2;
+	background: linear-gradient(to bottom right, black, rgba(216, 21, 200, 3));
+	color: #57e48d;
+	background-size: cover;
+	text-align: center;
 }
 
 h4 {
@@ -71,14 +74,13 @@ a.discrete:hover {
 }
 
 button {
-  -webkit-appearance: none;
   width: auto;
   min-width: 100px;
   border-radius: 24px;
   text-align: center;
   padding: 15px 40px;
   margin-top: 5px;
-  background-color: #0bf532;
+  background-color: #f107ab;
   color: #fff;
   font-size: 14px;
   margin-left: auto;
@@ -108,10 +110,10 @@ input {
   transition: all 0.3s linear;
   color: #000;
   font-weight: 400;
-  -webkit-appearance: none;
+
 }
 input:focus {
-  border-bottom: solid 1px #0bf532;
+  border-bottom: solid 1px #f107ab;
   outline: 0;
   box-shadow: 0 2px 6px -8px rgba(182, 157, 230, 0.45);
 }
@@ -127,7 +129,7 @@ input:focus {
   left: 0;
   opacity: 0;
   transition: all 0.3s ease;
-  padding-left: 44px;
+  padding-left: 55px;
 }
 .floating-label input {
   width: calc(100% - 44px);
@@ -183,13 +185,13 @@ input:focus {
   opacity: 1;
 }
 .floating-label input:valid:not(:-moz-placeholder-shown) + label + .icon svg path {
-  fill: #0bf532;
+  fill: #f107ab;
 }
 .floating-label input:valid:not(:-ms-input-placeholder) + label + .icon svg path {
-  fill: #0bf532;
+  fill: #f107ab;
 }
 .floating-label input:valid:not(:placeholder-shown) + label + .icon svg path {
-  fill: #0bf532;
+  fill: #f107ab;
 }
 .floating-label input:not(:valid):not(:focus) + label + .icon {
   -webkit-animation-name: shake-shake;
@@ -245,7 +247,7 @@ input:focus {
   width: auto;
   height: auto;
   margin: auto auto;
-  background: #ffffff;
+  background: linear-gradient(to bottom right, rgba(0, 0, 0, 0.7), rgba(216, 21, 200, 0.702));
   border-radius: 4px;
   box-shadow: 0px 2px 6px -1px rgba(0, 0, 0, 0.12);
 }
@@ -255,7 +257,16 @@ input:focus {
   height: auto;
   min-height: 100%;
   position: relative;
-  background-image: url("https://images.pexels.com/photos/114979/pexels-photo-114979.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+  background-image: url("");
+  background-size: cover;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+.bacgkimag{
+  width: 220px;
+  height: auto;
+  min-height: 100%;
+  position: relative;
   background-size: cover;
   border-top-left-radius: 4px;
   border-bottom-left-radius: 4px;
@@ -264,4 +275,16 @@ input:focus {
   height: 40px;
   width: auto;
   margin: 20px;
+}
+.writing{
+  font-size: large;
+  font-style: oblique;
+  font-display: fallback;
+  color: #f107ab;
+
+}
+.bee{
+  font-size: larger;
+  color: #f107ab;
+
 }
