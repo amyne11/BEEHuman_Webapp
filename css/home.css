@@ -250,9 +250,9 @@ a:hover {
 	padding-top: 1rem;
 	padding-bottom: 1rem;
 	padding-left: 1.5rem;
-	border: 2px solid #57e48d;
+	border: 2px solid rgba(216 , 21 , 200, 0.7);
 	background-color: #ffffff;
-	color: #57e48d;
+	color: rgba(216 , 21 , 200, 0.7);
 	font-size: 1rem;
 	line-height: 1.5rem;
 	font-family: "Poppins";
@@ -284,9 +284,9 @@ a:hover {
 	display: inline-block;
 	width: 100%;
 	height: 3.75rem;
-	border: 2px solid #25563f;
+	border: 2px solid rgba(216 , 21 , 200, 0.7);
 	border-radius: 32px;
-	background-color: #25563f;
+	background-color: rgba(216 , 21 , 200, 0.7);
 	color: #ffffff;
 	font-weight: 400;
 	font-size: 1rem;
@@ -297,11 +297,28 @@ a:hover {
 }
 
 .form-control-submit-button:hover {
-	border: 2px solid #25563f;
+	border: 2px solid rgba(216 , 21 , 200, 0.7);
 	background-color: transparent;
-	color: #25563f;
+	color: rgba(216 , 21 , 200, 0.7);
 }
-
+@keyframes flicker {
+	  
+	0%, 18%, 22%, 25%, 53%, 57%, 100% {
+  
+		text-shadow:
+		0 0 20px #0fa,
+		0 0 80px #0fa,
+		0 0 90px #0fa,
+		0 0 100px #0fa,
+		0 0 150px #0fa;
+	
+	}
+	
+	20%, 24%, 55% {        
+		text-shadow: none;
+	}    
+  }
+  
 
 /**********************/
 /*     Navigation     */
@@ -324,19 +341,14 @@ a:hover {
 }
 
 .navbar .logo-image {
-	width: 134px;
-	height: 30px;
+	animation: flicker 1.5s infinite alternate;
+	width: 200px;
+	height: 200px;
 	margin-top: 0.5rem;
 	margin-bottom: 1.25rem;
 }
 
-.navbar .logo-text {
-	margin-bottom: 0.5rem;
-	color: #ffffff;
-	font-weight: 500;
-	font-size: 5rem;
-	line-height: 1.875rem;
-}
+
 
 .navbar ul {
 	display: flex;
@@ -365,29 +377,35 @@ a:hover {
 header {
 	padding-top: 13rem;
 	padding-bottom: 9rem;
-	background: linear-gradient(to bottom right, rgba(28, 54, 51, 0.7), rgba(28, 54, 51, 0.7)), url('../images/beehuman.jpg') center center no-repeat;
+	background: linear-gradient(to bottom right, black, rgba(216, 21, 200, 3));
+	color: #57e48d;
 	background-size: cover;
 	text-align: center;
 }
 
 header .h1-large {
-	margin-bottom: 2.8rem;
-	color: #afffd7;
-}
+	margin-bottom: 3.5rem;
+	animation: flicker 1.5s infinite alternate;
+	color: greenyellow;
+  }
+  
+  
+  /* Flickering animation */
+
 header .h2-large {
-	margin-bottom: 2.5rem;
-	color: #d3ffaf;
+	margin-bottom: 5rem;
+	color: greenyellow;
 	font-size: xx-large;
 }
 
 header .btn-outline-lg {
-	border: 2px solid #ffffff;
+	border: 5px solid #ffffff;
 	color: #ffffff;
 }
 
 header .btn-outline-lg:hover {
-	background-color: #ffffff;
-	color: #252936;
+	background-color: #1ad114;
+	color: #ffffff;
 }
 
 
@@ -527,19 +545,24 @@ header .btn-outline-lg:hover {
 .contact {
 	padding-top: 9rem;
 	padding-bottom: 9rem;
+
+	/* background: linear-gradient(to bottom right, rgba(15, 212, 8, 1), rgba(216, 21, 200, 0.1)); */
 	text-align: center;
 }
 
 .contact h2 {
 	margin-bottom: 0.875rem;
+	color: rgba(216 , 21 , 200, 0.7);
 }
 
 .contact p {
 	margin-bottom: 3.75rem;
+	
 }
 
 .contact form {
 	text-align: left;
+	color: rgba(216 , 21 , 200, 0.7);
 }
 
 
@@ -768,6 +791,7 @@ footer .fab {
 		width: 820px;
 		margin-right: auto;
 		margin-left: auto;
+
 	}
 	/* end of contact */
 
