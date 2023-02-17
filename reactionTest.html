@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Reaction Test</title>
+	<link rel="stylesheet" type="text/css" href="reactionTest.css">
+	<script type="text/javascript" src="reactionTest.js"></script>
+</head>
+<body>
+	<div id="titleDiv">
+        <h1>Reaction Test</h1><br>
+        <h3>Tap when all lights go green</h3><br>
+        <div id="lab1" class="lights"></div>
+        <div id="lab2" class="lights"></div>
+        <div id="lab3" class="lights"></div>
+        <div id="lab4" class="lights"></div>
+        <div id="lab5" class="lights"></div>
+    </div>
+    <div id="playDiv">
+        <button id="clickButton" onclick=stopGame()></button>
+    </div>
+    <div id="timerDiv">
+        <h1 id="timer">00.00</h1>
+        <button onclick=startGame() id="startButton">START</button>
+    </div>
+</body>
+</html>
