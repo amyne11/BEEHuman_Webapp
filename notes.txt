@@ -1,5 +1,7 @@
 Shit todo:
-validate form details
-check if username already exists 
+validate form details -> controller
+check if username already exists -> ?
 insert user into db
 authenticate user
+
+
