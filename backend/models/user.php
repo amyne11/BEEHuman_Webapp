@@ -5,10 +5,12 @@ class User extends Db {
     {
         $this->connect();
         $sql = "INSERT INTO UserTable (userName, password)
-                VALUES ($username, $password)";
-        echo "insert";
+                VALUES (?, ?)";
         $stmt = $this->db->prepare($sql);
-        $stmt->execute();
+
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+        echo($hashedPassword);
+        $stmt->execute([$username, $hashedPassword]);
     }
 }
 

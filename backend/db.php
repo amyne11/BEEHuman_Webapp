@@ -9,6 +9,7 @@ class Db {
             $database_pass = "Y13COMP10120";
             $database_name = "2022_comp10120_y13";
             $this->db = new PDO("mysql:host=$database_host;dbname=$database_name", $database_user, $database_pass);
+            $this->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING);
         } catch (PDOException $e) {
             die($e->getMessage());
         }
