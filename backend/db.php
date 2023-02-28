@@ -2,7 +2,7 @@
 
 class Db {
     protected $db;
-    protected function connect() {
+    function __construct() {
         try {
             $database_host = "dbhost.cs.man.ac.uk";
             $database_user = "d86617ce";

@@ -48,6 +48,17 @@
         </div>
         
       </div>
+
+      <?php
+      if (isset($_GET['error'])) {
+      ?>
+      <span style="color:red;">
+      <?php
+        echo($_GET['error']);
+      }
+      ?>
+      </span>
+
       <button type="submit" name="signup">Create Account</button>
     </form>
   </div>
