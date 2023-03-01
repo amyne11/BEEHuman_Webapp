@@ -1,7 +1,0 @@
-Shit todo:
-validate form details -> controller
-check if username already exists -> ?
-insert user into db
-authenticate user
-
-
