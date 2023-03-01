@@ -671,8 +671,8 @@
         let hit = false;
         for (let i = 0; i < spikes.length; i++) {
             if (spikes[i][0] < 352 + b_width && spikes[i][2] > 352 && spikes[i][1] < y - 15 + b_height && spikes[i][3] > y - 15 || y > 720) {
-                hit = true;
                 gameOver();
+                hit = true;
             }
         } 
         return hit;
@@ -734,7 +734,7 @@
       }
 
       function gameOver() {
-        clearInterval(interval);
+        game_started = false;
         screen.font = "40px Arial";
         screen.fillStyle = "black";
         screen.textAlign = "center";
@@ -885,8 +885,6 @@
 
       function start() {
 
-        const interval = setInterval(letsgetgoin, 10);
-
         game_started = true;
 
         music();
@@ -896,6 +894,8 @@
         blox.length = 0;
         queue.length = 0;
         y = 240;
+        x = 0;
+        block_active = false;
         score = 0;
         bomb_acquired = false;
 
@@ -907,11 +907,14 @@
 
         queue[5] = 8
 
+        letsgetgoin();
+
       }
 
       function letsgetgoin() {
         if (game_started) {
             cool_function();
+            setTimeout(() => {letsgetgoin(); }, 5);
         }
       }
       
