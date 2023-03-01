@@ -682,7 +682,7 @@
         if (blox[3] + 1 == y - 15 && blox[0] < 352 + b_width && blox[2] > 352 && spawn_bomb) {
           block_active = true;
         }
-        if (bomb_loc[0] < 352 + b_width && bomb_loc[2] > 352 && bomb_loc[1] < y - 15 + b_height && bomb_loc[3] > y - 15 && !bomb_acquired && spawn_bomb) {
+        if (bomb_loc[0] < 352 + b_width && bomb_loc[2] > 352 && bomb_loc[1] < y - 15 + b_height && bomb_loc[3] > y - 15 && !bomb_acquired && spawn_bomb && block_active) {
           give_bomb();
         }
 
@@ -734,6 +734,7 @@
       }
 
       function gameOver() {
+        clearInterval(interval);
         screen.font = "40px Arial";
         screen.fillStyle = "black";
         screen.textAlign = "center";
@@ -806,6 +807,9 @@
           prev_locs.push(queue.shift());
           queue.push(r);
           score += 1;
+          if (r == 29) {
+            spawn_bomb = true;
+          }
         }
         x = 0;
       }
@@ -877,7 +881,13 @@
         swishswishswishahouseremix.play();
       }
 
+      // const interval = setInterval(letsgetgoin, 10);
+
       function start() {
+
+        const interval = setInterval(letsgetgoin, 10);
+
+        game_started = true;
 
         music();
 
@@ -897,13 +907,11 @@
 
         queue[5] = 8
 
-        letsgetgoin();
       }
 
       function letsgetgoin() {
         if (game_started) {
             cool_function();
-            setTimeout(() => { letsgetgoin(); }, 10);
         }
       }
       
@@ -931,7 +939,6 @@
           }
         } else if (e.key == "Enter") {
             if (!game_started) {
-                game_started = true;
                 start();
             } 
         } else if (e.key == "s") {
