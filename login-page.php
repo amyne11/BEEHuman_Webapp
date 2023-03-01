@@ -1,3 +1,6 @@
+<?php
+include "backend/includes/auth-guest.php";
+?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>

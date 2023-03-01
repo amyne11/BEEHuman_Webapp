@@ -1,3 +1,6 @@
+<?php
+include "backend/includes/auth-guest.php";
+?>
 <!DOCTYPE html>
 <html lang="en" >
 <head>
@@ -60,6 +63,7 @@
       </span>
 
       <button type="submit" name="signup">Create Account</button>
+      <p class= "writing">Already have an account? <a href="login-page.php">Login here</a></p>
     </form>
   </div>
 </body>

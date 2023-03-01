@@ -22,7 +22,7 @@ class Login extends User {
     {
         session_start();
         $_SESSION["logged"] = True;
-        die("You have logged in");
+        header("Location: ../index.php"); // TODO change to page where you can select games
     }
 
     private function valid()
