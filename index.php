@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -35,7 +39,7 @@
             <div class="container flex">
 
                 <!-- Image Logo -->
-                <a class="logo-image" href="index.html"><img src="logoproj.png" alt="alternative"></a>
+                <a class="logo-image" href="index.html"><img src="images/logoproj.png" alt="alternative"></a>
 
                 <!-- Text Logo - Use this if you don't have a graphic logo -->
                 <!-- <a class="logo-text" href="index.html">Name</a> -->
@@ -43,9 +47,25 @@
                 <nav>
                     <ul >
                         <li><a href="#services">Games</a></li>
-                        <li><a href="#developer">Developers</a></li>
                         <li><a href="#contact">Contact</a></li>
-                        <li><a href="login-page.html">Login</a></li>
+
+
+                        <?php
+                        if (isset($_SESSION["logged"])) 
+                        {
+                        ?>
+                            <li><a href="backend/logout.php">Logout</a></li>
+                        <?php
+                        } else 
+                        {
+                        ?>
+                            <li><a href="signup-page.php">Create Account</a></li>
+                            <li><a href="login-page.php">Login</a></li>
+                        <?php
+                        }
+                        ?>
+
+
                     </ul>
                 </nav>
             </div> <!-- end of container -->
@@ -125,7 +145,7 @@
                 <div>
                     
                     <!-- Image Logo -->
-                    <a class="logo-image" href="index.html"><img src="logoproj.png" alt="alternative"></a> 
+                    <a class="logo-image" href="index.html"><img src="images/logoproj.png" alt="alternative"></a> 
                     
                     <!-- Text Logo -->
                     <!-- <a class="logo-text" href="index.html">Name</a> -->
