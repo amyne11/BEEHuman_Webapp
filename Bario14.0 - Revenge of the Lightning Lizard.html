@@ -644,9 +644,9 @@
         }
         if (lizardspawned) {
           screen.drawImage(lizard_imgs[lizardindex], 600, y - 25);
-        }
-        if (throwlightning) {
-          screen.drawImage(lightning, lightningx, lightningy);
+          if (throwlightning) {
+            screen.drawImage(lightning, lightningx, lightningy);
+          }
         }
 
       }
@@ -965,7 +965,7 @@
 
         // for (let i = 0; i < 11; i++) {
         //   queue.push(get_rand_seg());
-        // }
+        // }Manchester
 
         create_queue();
 
