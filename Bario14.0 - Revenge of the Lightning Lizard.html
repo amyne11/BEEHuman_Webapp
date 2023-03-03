@@ -17,7 +17,7 @@
   </head>
   <body>
 
-    
+
 
     <canvas id="myCanvas" width="720" height="480"></canvas>
 
@@ -111,7 +111,7 @@
       lizardLightning.src = "https://i.ibb.co/D4FNB29/LIGHTNINGLIZARD.png";
 
       var lightning = new Image();
-      lightning = "https://i.ibb.co/SrVMtCq/Lightning.png";
+      lightning.src = "https://i.ibb.co/b5RTcs0/Lightning.png";
 
       let lizard_imgs = [lizard1, lizard2, lizard3, lizardLightning, lizard3, lizard2];
 
@@ -119,18 +119,18 @@
       let right_walk_imgs = [bfaceright, bwalkright1, bfaceright, bwalkright2];
       let left_walk_imgs = [bfaceleft, bwalkleft1, bfaceleft, bwalkleft2];
 
-    //   var bgmusic = document.getElementById("myAudio"); 
+    //   var bgmusic = document.getElementById("myAudio");
 
-    
+
 
       const bgmusic = new Audio("https://vgmsite.com/soundtracks/peggle/nwvnlomi/12_Peggle%20Beat%2011.mp3");
       bgmusic.loop = true;
 
       const Swishswishswishahouseremix = new Audio("https://audio.jukehost.co.uk/W2HKXgLJszW9PomtKRtINO2VD89c5KaL")
-    
 
-      
-     
+
+
+
 
 
       let rightindex = 0;
@@ -138,7 +138,7 @@
 
       let lastPressed = "Right";
       let cycleIP = false;
-      
+
       const b_height = 30;
       const b_width = 16;
 
@@ -159,9 +159,9 @@
       let explosion_phase = 0;
 
       let game_started = false;
-      
+
       let seg = [
-      
+
       [[4, 4],
       [4, 4],
       [4, 4],
@@ -420,7 +420,7 @@
         [0, 0],
         [0, 0],
         [0, 1],
-        [0, 0]], 
+        [0, 0]],
 
         [[0, 0],
         [0, 0],
@@ -433,7 +433,7 @@
         [1, 1],
         [2, 0],
         [0, 0],
-        [0, 0]], 
+        [0, 0]],
 
         [[0, 0],
         [1, 1],
@@ -446,7 +446,7 @@
         [0, 0],
         [0, 0],
         [0, 0],
-        [1, 1]], 
+        [1, 1]],
 
         [[0, 2],
         [0, 0],
@@ -459,7 +459,7 @@
         [1, 0],
         [0, 0],
         [0, 0],
-        [0, 0]], 
+        [0, 0]],
 
         [[2, 2],
         [2, 2],
@@ -555,7 +555,7 @@
 
       let grid = [];
       let queue = [];
-      
+
       let platforms = [];
       let spikes = [];
       let prev_locs = [];
@@ -568,19 +568,22 @@
       let spawn_bomb = false;
 
       let swisha_house_remix = false;
-      
+
       let lizardspawned = false;
       let lizardindex = 0;
-      
+      let throwlightning = false;
+      let lightningy = 0;
+      let lightningx = 0;
+
       let placed_bomb_loc = 0;
       let bomb_sector = 0;
-      
-      let square_size = 40; 
+
+      let square_size = 40;
 
       window.onload = function() {
         screen.drawImage(menuImage, 0, 0);
       }
-      
+
       function get_rand_seg() {
         return Math.floor(Math.random() * (seg.length - 1) + 1);
       }
@@ -595,7 +598,7 @@
       function draw_lizard() {
         lizardspawned = true;
         lizardindex = 0;
-        setTimeout(() => {  lizard_index_function(); }, 4000);
+        setTimeout(() => {  lizard_index_function(); }, 2000);
       }
 
       function lizard_index_function() {
@@ -604,14 +607,23 @@
         } else {
           lizardindex += 1;
         }
-        if (lizardindex == 4) {
-          throw_lightning();
+        if (lizardindex == 4 && !throwlightning) {
+          throwlightning = true;
+          lightningy = y - 10;
+          lightningx = 600 - 38;
+          move_lightning();
         }
-        setTimeout(() => {  lizard_index_function(); }, 4000);
+        setTimeout(() => {  lizard_index_function(); }, 2000);
       }
 
-      function throw_lightning() {
-        x = x;
+      function move_lightning() {
+        lightningx -= 2;
+        if (lightningx < -38) {
+          throwlightning = false;
+        }
+        if (throwlightning) {
+            setTimeout(() => { move_lightning(); }, 10);
+        }
       }
 
       function draw_barry() {
@@ -631,30 +643,34 @@
           }
         }
         if (lizardspawned) {
-          screen.drawImage(lizard_imgs[lizardindex], 310, 0);
+          screen.drawImage(lizard_imgs[lizardindex], 600, y - 25);
         }
-        
+        if (throwlightning) {
+          screen.drawImage(lightning, lightningx, lightningy);
+        }
+
       }
 
       function move() {
         if (rightPressed) {
           dx = -2.5;
-        } 
+        }
         if (leftPressed) {
           dx = 2.5;
-        } 
+        }
         if (spacePressed) {
           dy = -3;
-        } 
+        }
         if (!rightPressed && !leftPressed) {
           dx = 0;
         }
-              
+
         if (!collision()) {
             x += dx;
             y += dy;
+            lightningx += dx
             total_jump += dy;
-            
+
             if (total_jump < -150) {
                 spacePressed = false;
             }
@@ -665,9 +681,9 @@
                 adjust_queue_left();
             } else if (x > 0 && prev_locs.length == 0) {
                 prev_locs.push(get_rand_seg());
-            } 
+            }
         }
-        gen_trn();  
+        gen_trn();
         draw_barry();
       }
 
@@ -676,7 +692,7 @@
             dy = 0.5;
         } else {
             dy = 0;
-        }   
+        }
         y += dy;
       }
 
@@ -706,8 +722,11 @@
             if (spikes[i][0] < 352 + b_width && spikes[i][2] > 352 && spikes[i][1] < y - 15 + b_height && spikes[i][3] > y - 15 || y > 720) {
                 gameOver();
                 hit = true;
+            } else if (lightningx < 352 + b_width && lightningx + 38 > 352 && lightningy < y - 15 + b_height && lightningy + 18 > y - 15 && throwlightning) {
+                gameOver();
+                hit = true;
             }
-        } 
+        }
         return hit;
       }
 
@@ -746,7 +765,7 @@
           }
         }
         explosion_phase = 0;
-        setTimeout(() => { cycle(x5); }, 150);   
+        setTimeout(() => { cycle(x5); }, 150);
       }
 
       function cycle(x5) {
@@ -767,6 +786,7 @@
       }
 
       function gameOver() {
+        throwlightning = false;
         game_started = false;
         screen.font = "40px Arial";
         screen.fillStyle = "black";
@@ -777,7 +797,7 @@
         game_started = false;
       }
 
-      function gen_trn() { 
+      function gen_trn() {
         let activer = false;
         screen.clearRect(0, 0, canvas.width, canvas.height);
         screen.drawImage(background, 0, 0);
@@ -803,7 +823,7 @@
                         }
                       } else {
                         create_tile(block, i, j, k);
-                      }       
+                      }
                       platforms.push([(((i * 2) + j) * 40) + x, k * 40, (((i * 2) + j) * 40) + 40 + x, (k * 40) + 40]);
                       blox = [(((i * 2) + j) * 40) + x, k * 40, (((i * 2) + j) * 40) + 40 + x, (k * 40) + 40];
                     } else if (seg[queue[i + 1]][k][j] == 4) {
@@ -811,7 +831,7 @@
                     }
                 }
             }
-        } 
+        }
         show_score();
         if (!activer) {
           block_active = false;
@@ -922,6 +942,11 @@
 
       function start() {
 
+        lightningy = y - 10;
+        lightningx = 600 - 38;
+        lizardindex = 0;
+        throwlightning = false;
+        lizardspawned = false;
         generate_random_lizard();
 
         game_started = true;
@@ -937,7 +962,6 @@
         block_active = false;
         score = 0;
         bomb_acquired = false;
-        lizard_spawned = false;
 
         // for (let i = 0; i < 11; i++) {
         //   queue.push(get_rand_seg());
@@ -957,7 +981,7 @@
             setTimeout(() => {letsgetgoin(); }, 6);
         }
       }
-      
+
 
       document.addEventListener("keydown", keyDownHandler, false);
       document.addEventListener("keyup", keyUpHandler, false);
@@ -983,7 +1007,7 @@
         } else if (e.key == "Enter") {
             if (!game_started) {
                 start();
-            } 
+            }
         } else if (e.key == "s") {
             if (game_started) {
                 swishahouseremix();
