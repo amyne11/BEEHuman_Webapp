@@ -8,6 +8,7 @@ let lightsGreen = false;
 let lights = ["lab1", "lab2", "lab3", "lab4", "lab5"];
 let li_index = 0
 let first = true;
+let changing = false;
 
 function startGame(){
     // When start button is clicked, game is set to its original state
@@ -22,6 +23,7 @@ function lightTimer(current_id){
     // Each light changes after a random amount of time under 10s
     if (lightsGreen == false){
         console.log("Here");
+        changing = true
         light_interval = setInterval(changeLight, Math.floor(Math.random() * 1000))
     }
 }
@@ -37,13 +39,14 @@ function changeLight(){
         
     }
     else{
-        document.getElementById(current_id).style.cssText = "background-color: green";
+        document.getElementById(current_id).style.cssText = "background-color: green; box-shadow: 0px 0px 30px 15px green";
         li_index += 1;
         console.log(li_index)
         if (current_id == lights[lights.length-1]){
             lightsGreen = true;
             li_index = 0;
             clearInterval(light_interval);
+            changing = false
             // After the last light changes, the timer for the reaction starts
             interBegin();
         }
@@ -60,7 +63,7 @@ function stopGame(){
     }
     // If the lights haven't all changed, then the button goes red to show they went too early
     else{
-        document.getElementById("clickButton").style.cssText = "background-color: red";
+        document.getElementById("clickButton").style.cssText = "background-color: red; box-shadow: 0px 0px 20px 10px red";
         clearInterval(light_interval);
     }
 }
@@ -74,9 +77,12 @@ function interBegin(){
 
 function resetGame(){
     // This changes the background colour back to the original and calls resetTimer
-    document.getElementById("clickButton").style.cssText = "background-color: blanchedalmond";
+    document.getElementById("clickButton").style.cssText = "background-color: transparent";
     for (let i = 0; i < lights.length; i++){
-        document.getElementById(lights[i]).style.cssText = "background-color: red";
+        document.getElementById(lights[i]).style.cssText = "background-color: red; box-shadow: 0px 0px 20px 10px red";
+    }
+    if (changing == true){
+        clearInterval(light_interval)
     }
     lightsGreen = false;
     time = 0;
