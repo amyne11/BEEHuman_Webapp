@@ -577,6 +577,7 @@
 
       let placed_bomb_loc = 0;
       let bomb_sector = 0;
+      let xxplosive = 0;
 
       let square_size = 40;
 
@@ -613,7 +614,9 @@
           lightningx = 600 - 38;
           move_lightning();
         }
-        setTimeout(() => {  lizard_index_function(); }, 2000);
+        if (lizardspawned) {
+          setTimeout(() => {  lizard_index_function(); }, 2000);
+        }
       }
 
       function move_lightning() {
@@ -621,7 +624,7 @@
         if (lightningx < -38) {
           throwlightning = false;
         }
-        if (throwlightning) {
+        if (throwlightning && lizardspawned) {
             setTimeout(() => { move_lightning(); }, 10);
         }
       }
@@ -643,7 +646,7 @@
           }
         }
         if (lizardspawned) {
-          screen.drawImage(lizard_imgs[lizardindex], 600, y - 25);
+          screen.drawImage(lizard_imgs[lizardindex], 600, y - 25, 50, 50);
           if (throwlightning) {
             screen.drawImage(lightning, lightningx, lightningy);
           }
@@ -668,7 +671,9 @@
         if (!collision()) {
             x += dx;
             y += dy;
-            lightningx += dx
+            if (throwlightning && lizardspawned) {
+              lightningx += dx
+            }
             total_jump += dy;
 
             if (total_jump < -150) {
@@ -745,6 +750,7 @@
         bomb_acquired = false;
         draw_bomb = true;
         placed_bomb_loc = [340, y - 25];
+        xxplosive = x;
         if (x >= 40) {
             bomb_sector = queue[4];
         } else if (x <= -40) {
@@ -764,8 +770,16 @@
             x5 = i;
           }
         }
+        explode_lizard();
         explosion_phase = 0;
         setTimeout(() => { cycle(x5); }, 150);
+      }
+
+      function explode_lizard() {
+        if (placed_bomb_loc[0] + xxplosive - 20 < 650 && placed_bomb_loc[0] + xxplosive + 60 > 600) {
+          lizardspawned = false;
+          generate_random_lizard();
+        } 
       }
 
       function cycle(x5) {
@@ -881,6 +895,7 @@
 
       function generate_random_lizard() {
         if (!lizardspawned) {
+          throwlightning = false;
           let liz_num = Math.floor(Math.random() * 50000);
           setTimeout(() => {draw_lizard(); }, liz_num);
         }
