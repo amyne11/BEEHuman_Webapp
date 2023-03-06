@@ -16,152 +16,87 @@
     </style>
   </head>
   <body>
-
-
-
     <canvas id="myCanvas" width="720" height="480"></canvas>
-
     <script>
-
       const canvas = document.getElementById("myCanvas");
       const screen = canvas.getContext("2d");
-
       var menuImage = new Image();
       menuImage.src = "https://i.ibb.co/bLpLPN0/Menu.png"
-
       var background = new Image();
       background.src = "https://i.ibb.co/cFzwsJC/Magic-grotto3.jpg";
-
       var grassBlock = new Image();
       grassBlock.src = "https://i.ibb.co/Dk5zK8n/Grass-Block.png";
-
       var spikeBlock = new Image();
       spikeBlock.src = "https://i.ibb.co/t362ZZr/pngfind-com-spikes-png-816849.png";
-
       var block = new Image();
       block.src = "https://i.ibb.co/S3LzjCg/Exclamation-Block.png";
-
       var bomb = new Image();
       bomb.src = "https://i.ibb.co/0yZGhD9/Bomb.png";
-
       var bricks = new Image();
       bricks.src = "https://i.ibb.co/FwNBjG2/Bricks.png";
-
       var explosion1 = new Image();
       explosion1.src = "https://i.ibb.co/qNF1XDf/Explosion1.png";
-
       var explosion2 = new Image();
       explosion2.src = "https://i.ibb.co/wswFrbr/Explosion2.png";
-
       var explosion3 = new Image();
       explosion3.src = "https://i.ibb.co/k0tmnQw/Explosion3.png";
-
       var explosion4 = new Image();
       explosion4.src = "https://i.ibb.co/wgc33Zb/Explosion4.png";
-
       var explosion5 = new Image();
       explosion5.src = "https://i.ibb.co/wKxbkBf/Explosion5.png";
-
       var explosion6 = new Image();
       explosion6.src = "https://i.ibb.co/TvwmHXR/Explosion6.png";
-
       var explosion7 = new Image();
       explosion7.src = "https://i.ibb.co/yg82Xsw/Explosion7.png";
-
       var explosion8 = new Image();
       explosion8.src = "https://i.ibb.co/sWCcF01/Explosion8.png";
-
       let explosions = [explosion1, explosion2, explosion3, explosion4, explosion5, explosion6, explosion7, explosion8];
-
-
-
-
-
-
-
-
       var bfaceright = new Image();
       bfaceright.src = "https://i.ibb.co/RN4mLy7/BStat-Right.png";
-
       var bwalkright1 = new Image();
       bwalkright1.src = "https://i.ibb.co/GCZ2LnY/BMove-Right1.png";
-
       var bwalkright2 = new Image();
       bwalkright2.src = "https://i.ibb.co/9WFMwkC/BMove-Right2.png";
-
       var bfaceleft = new Image();
       bfaceleft.src = "https://i.ibb.co/9TymgVQ/BStat-Left.png";
-
       var bwalkleft1 = new Image();
       bwalkleft1.src = "https://i.ibb.co/ygk5HNV/BMove-Left1.png";
-
       var bwalkleft2 = new Image();
       bwalkleft2.src = "https://i.ibb.co/JKcCBD0/BMove-Left-2.png";
-
       var lizard1 = new Image();
       lizard1.src = "https://i.ibb.co/N32HhSj/Lizard1.png";
-
       var lizard2 = new Image();
       lizard2.src = "https://i.ibb.co/tLn0PkH/Lizard2.png";
-
       var lizard3 = new Image();
       lizard3.src = "https://i.ibb.co/3pv7gB3/Lizard3.png";
-
       var lizardLightning = new Image();
       lizardLightning.src = "https://i.ibb.co/D4FNB29/LIGHTNINGLIZARD.png";
-
       var lightning = new Image();
       lightning.src = "https://i.ibb.co/b5RTcs0/Lightning.png";
-
       let lizard_imgs = [lizard1, lizard2, lizard3, lizardLightning, lizard3, lizard2];
-
-
       let right_walk_imgs = [bfaceright, bwalkright1, bfaceright, bwalkright2];
       let left_walk_imgs = [bfaceleft, bwalkleft1, bfaceleft, bwalkleft2];
-
-    //   var bgmusic = document.getElementById("myAudio");
-
-
-
       const bgmusic = new Audio("https://vgmsite.com/soundtracks/peggle/nwvnlomi/12_Peggle%20Beat%2011.mp3");
       bgmusic.loop = true;
-
       const Swishswishswishahouseremix = new Audio("https://audio.jukehost.co.uk/W2HKXgLJszW9PomtKRtINO2VD89c5KaL")
-
-
-
-
-
-
       let rightindex = 0;
       let leftindex = 0;
-
       let lastPressed = "Right";
       let cycleIP = false;
-
       const b_height = 30;
       const b_width = 16;
-
       let score = 0;
-
       let x = 0;
       let y = 240;
-
       let rightPressed = false;
       let leftPressed = false;
       let spacePressed = false;
-
       let total_jump = 0;
-
       let dx = 0;
       let dy = 0;
-
       let explosion_phase = 0;
-
       let game_started = false;
-
       let seg = [
-
       [[4, 4],
       [4, 4],
       [4, 4],
@@ -174,7 +109,6 @@
       [4, 4],
       [4, 4],
       [4, 4]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -187,7 +121,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [1, 1],
         [0, 0],
@@ -200,7 +133,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [1, 1],
@@ -213,7 +145,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -226,7 +157,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -239,7 +169,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -252,7 +181,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -265,7 +193,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -278,7 +205,6 @@
         [1, 1],
         [1, 1],
         [1, 1]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -291,7 +217,6 @@
         [0, 0],
         [2, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 2],
@@ -304,7 +229,6 @@
         [1, 1],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -317,7 +241,6 @@
         [0, 0],
         [1, 1],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -330,7 +253,6 @@
         [0, 0],
         [2, 2],
         [1, 1]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -343,7 +265,6 @@
         [0, 0],
         [0, 0],
         [2, 2]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -356,7 +277,6 @@
         [1, 1],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -369,7 +289,6 @@
         [0, 0],
         [0, 0],
         [1, 1]],
-
         [[0, 0],
         [0, 0],
         [1, 1],
@@ -382,7 +301,6 @@
         [0, 0],
         [1, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 1],
         [0, 0],
@@ -395,7 +313,6 @@
         [1, 1],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [1, 0],
@@ -408,7 +325,6 @@
         [0, 1],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [1, 0],
         [0, 0],
@@ -421,7 +337,6 @@
         [0, 0],
         [0, 1],
         [0, 0]],
-
         [[0, 0],
         [0, 0],
         [1, 1],
@@ -434,7 +349,6 @@
         [2, 0],
         [0, 0],
         [0, 0]],
-
         [[0, 0],
         [1, 1],
         [0, 0],
@@ -447,7 +361,6 @@
         [0, 0],
         [0, 0],
         [1, 1]],
-
         [[0, 2],
         [0, 0],
         [0, 0],
@@ -460,7 +373,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[2, 2],
         [2, 2],
         [0, 0],
@@ -473,7 +385,6 @@
         [0, 2],
         [2, 2],
         [2, 2]],
-
         [[0, 2],
         [0, 0],
         [0, 0],
@@ -486,7 +397,6 @@
         [0, 0],
         [1, 1],
         [1, 1]],
-
         [[0, 2],
         [0, 0],
         [2, 2],
@@ -499,7 +409,6 @@
         [0, 0],
         [0, 0],
         [0, 0]],
-
         [[2, 2],
         [2, 2],
         [0, 0],
@@ -512,7 +421,6 @@
         [0, 0],
         [2, 2],
         [2, 2]],
-
         [[1, 0],
         [0, 0],
         [0, 0],
@@ -525,7 +433,6 @@
         [1, 0],
         [0, 0],
         [0, 0]],
-
         [[1, 0],
         [1, 0],
         [1, 0],
@@ -538,7 +445,6 @@
         [0, 0],
         [1, 0],
         [1, 0]],
-
         [[0, 0],
         [0, 0],
         [0, 0],
@@ -552,10 +458,8 @@
         [0, 0],
         [1, 1]]
       ];
-
       let grid = [];
       let queue = [];
-
       let platforms = [];
       let spikes = [];
       let prev_locs = [];
@@ -566,42 +470,33 @@
       let draw_bomb = false;
       let expIP = false;
       let spawn_bomb = false;
-
       let swisha_house_remix = false;
-
       let lizardspawned = false;
       let lizardindex = 0;
       let throwlightning = false;
       let lightningy = 0;
       let lightningx = 0;
-
       let placed_bomb_loc = 0;
       let bomb_sector = 0;
       let xxplosive = 0;
-
       let square_size = 40;
-
       window.onload = function() {
         screen.drawImage(menuImage, 0, 0);
       }
-
       function get_rand_seg() {
         return Math.floor(Math.random() * (seg.length - 1) + 1);
       }
-
       function show_score() {
         screen.font="30px Arial";
         screen.fillStyle = "black";
         screen.textAlign = "right";
         screen.fillText("Score: " + score, canvas.width/5, canvas.height/12);
       }
-
       function draw_lizard() {
         lizardspawned = true;
         lizardindex = 0;
         setTimeout(() => {  lizard_index_function(); }, 2000);
       }
-
       function lizard_index_function() {
         if (lizardindex + 1 == 6) {
           lizardindex = 0;
@@ -618,7 +513,6 @@
           setTimeout(() => {  lizard_index_function(); }, 2000);
         }
       }
-
       function move_lightning() {
         lightningx -= 2;
         if (lightningx < -38) {
@@ -628,7 +522,6 @@
             setTimeout(() => { move_lightning(); }, 10);
         }
       }
-
       function draw_barry() {
         if (rightPressed) {
             screen.drawImage(right_walk_imgs[rightindex], 352, y - 15);
@@ -651,9 +544,7 @@
             screen.drawImage(lightning, lightningx, lightningy);
           }
         }
-
       }
-
       function move() {
         if (rightPressed) {
           dx = -2.5;
@@ -667,7 +558,6 @@
         if (!rightPressed && !leftPressed) {
           dx = 0;
         }
-
         if (!collision()) {
             x += dx;
             y += dy;
@@ -675,11 +565,9 @@
               lightningx += dx
             }
             total_jump += dy;
-
             if (total_jump < -150) {
                 spacePressed = false;
             }
-
             if (x <= -80) {
                 adjust_queue_right();
             } else if (x >= 80) {
@@ -691,7 +579,6 @@
         gen_trn();
         draw_barry();
       }
-
       function gravity() {
         if (grav_collision(0.5) == false) {
             dy = 0.5;
@@ -700,7 +587,6 @@
         }
         y += dy;
       }
-
       function grav_collision(spoogeh) {
         let hit = false
         for (let i = 0; i < platforms.length; i++) {
@@ -710,7 +596,6 @@
         }
         return hit;
       }
-
       function collision() {
         let hit = false;
         for (let i = 0; i < platforms.length; i++) {
@@ -720,7 +605,6 @@
         }
         return hit;
       }
-
       function spike_col() {
         let hit = false;
         for (let i = 0; i < spikes.length; i++) {
@@ -734,7 +618,6 @@
         }
         return hit;
       }
-
       function blox_col() {
         if (blox[3] + 1 == y - 15 && blox[0] < 352 + b_width && blox[2] > 352 && spawn_bomb) {
           block_active = true;
@@ -742,9 +625,7 @@
         if (bomb_loc[0] < 352 + b_width && bomb_loc[2] > 352 && bomb_loc[1] < y - 15 + b_height && bomb_loc[3] > y - 15 && !bomb_acquired && spawn_bomb && block_active) {
           give_bomb();
         }
-
       }
-
       function place_bomb() {
         expIP = true;
         bomb_acquired = false;
@@ -760,7 +641,6 @@
         }
         setTimeout(() => {  explode(); }, 3000);
       }
-
       function explode() {
         draw_bomb = false;
         let x5 = 0;
@@ -774,14 +654,12 @@
         explosion_phase = 0;
         setTimeout(() => { cycle(x5); }, 150);
       }
-
       function explode_lizard() {
         if (placed_bomb_loc[0] + xxplosive - 20 < 650 && placed_bomb_loc[0] + xxplosive + 60 > 600) {
           lizardspawned = false;
           generate_random_lizard();
         } 
       }
-
       function cycle(x5) {
         if (explosion_phase < 7) {
             explosion_phase += 1;
@@ -792,13 +670,11 @@
             expIP = false;
         }
       }
-
       function give_bomb() {
         spawn_bomb = false;
         bomb_acquired = true;
         score += 50;
       }
-
       function gameOver() {
         throwlightning = false;
         game_started = false;
@@ -810,7 +686,6 @@
         screen.fillText("Press enter to play again!", canvas.width/2, canvas.height/1.7)
         game_started = false;
       }
-
       function gen_trn() {
         let activer = false;
         screen.clearRect(0, 0, canvas.width, canvas.height);
@@ -853,16 +728,10 @@
         if (bomb_acquired) {
           screen.drawImage(bomb, 680, 0);
         }
-        // if (draw_bomb) {
-        //   screen.drawImage(bomb, placed_bomb_loc[0], placed_bomb_loc[1]);
-        //   placed_bomb_loc[0] += dx
-        // }
       }
-
       function create_tile(type, i, j, k) {
         screen.drawImage(type, (((i * 2) + j) * 40) + x, k * 40);
       }
-
       function adjust_queue_right() {
         let r = get_rand_seg();
         if (queue.includes(r)) {
@@ -877,14 +746,12 @@
         }
         x = 0;
       }
-
       function adjust_queue_left() {
         if (prev_locs.length > 0) {
             queue.unshift(prev_locs.pop());
         }
         x = 0;
       }
-
       function cool_function() {
         if (!spike_col()) {
             move();
@@ -892,7 +759,6 @@
             blox_col();
         }
       }
-
       function generate_random_lizard() {
         if (!lizardspawned) {
           throwlightning = false;
@@ -900,7 +766,6 @@
           setTimeout(() => {draw_lizard(); }, liz_num);
         }
       }
-
       function leftcycle() {
         cycleIP = true;
         leftindex += 1;
@@ -915,7 +780,6 @@
             leftindex = 0;
         }
       }
-
       function rightcycle() {
         cycleIP = true;
         rightindex += 1;
@@ -930,7 +794,6 @@
             rightindex = 0;
         }
       }
-
       function create_queue() {
         if (queue.length < 11) {
             let r = get_rand_seg();
@@ -943,31 +806,22 @@
             create_queue();
         }
       }
-
       function music() {
         bgmusic.play();
       }
-
       function swishahouseremix() {
         bgmusic.pause();
         swishswishswishahouseremix.play();
       }
-
-      // const interval = setInterval(letsgetgoin, 10);
-
       function start() {
-
         lightningy = y - 10;
         lightningx = 600 - 38;
         lizardindex = 0;
         throwlightning = false;
         lizardspawned = false;
         generate_random_lizard();
-
         game_started = true;
-
         music();
-
         platforms.length = 0;
         spikes.length = 0;
         blox.length = 0;
@@ -977,30 +831,18 @@
         block_active = false;
         score = 0;
         bomb_acquired = false;
-
-        // for (let i = 0; i < 11; i++) {
-        //   queue.push(get_rand_seg());
-        // }Manchester
-
         create_queue();
-
         queue[5] = 8
-
         letsgetgoin();
-
       }
-
       function letsgetgoin() {
         if (game_started) {
             cool_function();
             setTimeout(() => {letsgetgoin(); }, 6);
         }
       }
-
-
       document.addEventListener("keydown", keyDownHandler, false);
       document.addEventListener("keyup", keyUpHandler, false);
-
       function keyDownHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
           rightPressed = true;
@@ -1029,7 +871,6 @@
             }
         }
       }
-
       function keyUpHandler(e) {
         if (e.key == "Right" || e.key == "ArrowRight") {
           rightPressed = false;
@@ -1039,7 +880,6 @@
           spacePressed = false;
         }
       }
-
     </script>
   </body>
 </html>
