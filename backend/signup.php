@@ -11,5 +11,7 @@ if (isset($_POST["signup"]))
     $signupContr->create($username, $password);
     $loginContr = new Login();
     $loginContr->startSession();
+
+    $_SESSION['username'] = $username;
 } 
 ?>
