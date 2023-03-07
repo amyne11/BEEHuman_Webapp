@@ -39,7 +39,7 @@ session_start();
             <div class="container flex">
 
                 <!-- Image Logo -->
-                <a class="logo-image" href="index.html"><img src="images/logoproj.png" alt="alternative"></a>
+                <a class="logo-image" href="index.php"><img src="images/logoproj.png" alt="alternative"></a>
 
                 <!-- Text Logo - Use this if you don't have a graphic logo -->
                 <!-- <a class="logo-text" href="index.html">Name</a> -->
@@ -112,12 +112,11 @@ session_start();
 
 
         <!-- Contact -->
-        <div id="contact" class="contact bg-gray">
+        <!-- <div id="contact" class="contact bg-gray">
             <div class="container">
                 <h2>Help us to improve</h2>
                 <p class="p-heading">Please suggest us what improvments you would like to see in our project!</p>
 
-                <!-- Contact Form -->
                 <form>
                     <div class="form-group">
                         <input type="text" class="form-control-input" placeholder="Name" required>
@@ -132,23 +131,19 @@ session_start();
                         <button type="submit" class="form-control-submit-button">Submit</button>
                     </div>
                 </form>
-                <!-- end of contact form -->
+                
 
-            </div> <!-- end of container -->
-        </div> <!-- end of contact -->
-        <!-- end of contact -->
+            </div> 
+        </div> 
 
 
-        <!-- Footer -->
+       
         <footer>
             <div class="container grid grid-3">
                 <div>
                     
-                    <!-- Image Logo -->
                     <a class="logo-image" href="index.html"><img src="images/logoproj.png" alt="alternative"></a> 
                     
-                    <!-- Text Logo -->
-                    <!-- <a class="logo-text" href="index.html">Name</a> -->
 
                     <p>Copyright © 2022</p>
                 </div>
@@ -166,16 +161,13 @@ session_start();
                     <a href="#"><i class="fab fa-linkedin-in"></i></a>
                     <a href="#"><i class="fab fa-instagram"></i></a>
                 </div>
-            </div> <!-- end of container -->
-        </footer> <!-- end of footer -->
-        <!-- end of footer -->
+            </div>
+        </footer> 
 
 
-        <!-- Back To Top Button -->
         <a id="myBtn" href="#" data-scroll>
             <img src="images/up-arrow.png" alt="alternative">
-        </a>
-        <!-- end of back to top button -->
+        </a> -->
             
         <!-- Scripts -->
         <script src="js/smooth-scroll.polyfills.min.js"></script> <!-- Smooth Scroll -->
