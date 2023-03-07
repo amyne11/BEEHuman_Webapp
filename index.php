@@ -46,7 +46,7 @@ session_start();
  
                 <nav>
                     <ul >
-                        <li><a href="#services">Games</a></li>
+                        <li><a href="games.php">Games</a></li>
                         <li><a href="#contact">Contact</a></li>
 
 
@@ -79,7 +79,7 @@ session_start();
                 <div class="text-container">
                     <h1 class="h1-large">BEE HUMAN</h1>
                     <h1 class="h2-large">Test Yourself</h1>
-                    <a class="btn-outline-lg" href="#services">PLAY GAMES</a>
+                    <a class="btn-outline-lg" href="games.php">PLAY GAMES</a>
                 </div> <!-- end of text-container -->
             </div> <!-- end of container -->
         </header> <!-- end of header -->

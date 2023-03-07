@@ -8,5 +8,7 @@ if (isset($_POST["login"]))
     
     $loginContr = new Login();
     $loginContr->create($username, $password);
+
+    $_SESSION['username'] = $username;
 } 
 ?>
