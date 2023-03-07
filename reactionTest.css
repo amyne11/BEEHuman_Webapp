@@ -70,6 +70,7 @@ body{
     background-image: url("reaction.jpg");
     background-color: transparent;
     background-size: cover;
+    background-position: center;
     /* background-size: contain; */
 }
 .btn{
