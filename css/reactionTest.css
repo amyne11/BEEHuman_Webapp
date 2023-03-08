@@ -67,7 +67,7 @@ body{
           rgba(52, 44, 44, 0.7), 
           rgba(48, 39, 39, 0.7)
         );
-    background-image: url("reaction.jpg");
+    background-image: url("../images/reaction.jpg");
     background-color: transparent;
     background-size: cover;
     background-position: center;

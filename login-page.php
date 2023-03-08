@@ -6,6 +6,8 @@ include "backend/includes/auth-guest.php";
 <head>
   <meta charset="UTF-8">
   <title>Bee Human</title>
+  <link rel="icon" href="images/favicon.png">
+
   <link rel="stylesheet" href="./css/login.css">
 
 </head>

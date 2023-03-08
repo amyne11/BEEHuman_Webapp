@@ -1,10 +1,13 @@
+<?php
+include "backend/includes/auth-user.php";
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Reaction Test</title>
-	<link rel="stylesheet" type="text/css" href="reactionTest.css">
+	<link rel="stylesheet" type="text/css" href="css/reactionTest.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href='https://fonts.googleapis.com/css?family=Nova Flat' rel='stylesheet'>
     <style>
@@ -19,7 +22,7 @@
         }
     </style> -->
     <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-<script type="text/javascript" src="reactionTest.js"></script>
+<script type="text/javascript" src="js/reactionTest.js"></script>
 </head>
 <body>
 	<div id="titleDiv">

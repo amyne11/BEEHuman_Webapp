@@ -6,7 +6,11 @@ include "backend/includes/auth-user.php";
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Image Hover Effect - pure css - #18</title>
+
+  <link rel="icon" href="images/favicon.png">
+  
+
+  <title>Bee Human | Select Your Game</title>
   <link rel="stylesheet" href="./css/gamePage.css">
 
 </head>
@@ -43,9 +47,9 @@ include "backend/includes/auth-user.php";
 			</div>
 			<div class="section-col">
 				<div class="section">
-					<div class="section-in">
+					<a href="reactionTest.php" class="section-in">
 						<img src="images/reaction.jpg" alt="">
-					</div>
+					</a>
 				</div>
 			</div>
 			<div class="hover-text">
