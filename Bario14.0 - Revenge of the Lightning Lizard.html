@@ -657,6 +657,7 @@
       function explode_lizard() {
         if (placed_bomb_loc[0] + xxplosive - 20 < 650 && placed_bomb_loc[0] + xxplosive + 60 > 600) {
           lizardspawned = false;
+          score += 50
           generate_random_lizard();
         } 
       }
@@ -673,7 +674,7 @@
       function give_bomb() {
         spawn_bomb = false;
         bomb_acquired = true;
-        score += 50;
+        score += 10;
       }
       function gameOver() {
         throwlightning = false;
