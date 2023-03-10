@@ -6,106 +6,93 @@ const paragraphs = [
     "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resulx tant pleasure?"
 ];
 
-// Get the necessary HTML elements
+//Get the necessary HTML elements
 const typingText = document.querySelector(".typingText p")
-const inpText = document.querySelector(".wrapper .inputText")
+const inputText = document.querySelector(".wrapper .inputText")
 const againBtn = document.querySelector(".content button")
 const timeTag = document.querySelector(".time span b")
 const mistakeTag = document.querySelector(".mistakes span")
 const wpmTag = document.querySelector(".wpm span")
-const wpmRes = document.querySelector(".wpmResult span")
-const mistakesRes = document.querySelector(".mistakesResult span")
-const accuracyRes = document.querySelector(".accuracyResult span")
+const wpmResult = document.querySelector(".wpmResult span")
+const mistakesResult = document.querySelector(".mistakesResult span")
+const accuracyResult = document.querySelector(".accuracyResult span")
 
-// Initialize some variables
+//Initialises some variables
 let timer;
 let maxTime = 60;
 let timeRem = maxTime;
-let indexOfChar = 0;
+let currentindex = 0;
 let numOfMistakes = 0;
 let isTyping = 0;
 let finalWPM = 0;
 let finalMistakes = 0;
 let finalAccuracy = 0;
 
-// Load a random paragraph for the user to type
+//Load a random paragraph for the user to type
 function loadParagraph() {
     const randPara = Math.floor(Math.random() * paragraphs.length);
     typingText.innerHTML = "";
-    // Split the paragraph into individual characters and add each character to the HTML as a <span>
+    //Split the paragraph into individual characters and add each character to the HTML as a <span>
     paragraphs[randPara].split("").forEach(char => {
         let span = `<span>${char}</span>`
         typingText.innerHTML += span;
     });
-    // Highlight the first character in the paragraph
+    //Highlight the first character in the paragraph
     typingText.querySelectorAll("span")[0].classList.add("active");
-    // Set focus to the input field when the user clicks anywhere in the paragraph
-    document.addEventListener("keydown", () => inpText.focus());
-    typingText.addEventListener("click", () => inpText.focus());
+    //Set focus to the input field when the user clicks anywhere in the paragraph
+    document.addEventListener("keydown", () => inputText.focus());
+    typingText.addEventListener("click", () => inputText.focus());
 }
 
-// Check if the user's typing matches the expected text
+//Check if the user's typing matches the expected text
 function Typing() {
     let characters = typingText.querySelectorAll("span");
-    let typedChar = inpText.value.split("")[indexOfChar];
-    // If there are still characters to type and time has not run out
-    if (indexOfChar < characters.length - 1 && timeRem > 0) {
-        // If the user just started typing, start the timer
+    let typedChar = inputText.value.split("")[currentindex];
+    //If there are still characters to type and time has not run out
+    if (currentindex < characters.length && timeRem > 0) {
+        //If the user just started typing, start the timer
         if (!isTyping) {
             timer = setInterval(initialiseTimer, 1000);
             isTyping = true;
         }
-        // If the user backspaces, delete the previous character
+        //If the user backspaces, delete the previous character
         if (typedChar == null) {
-            if (indexOfChar > 0) {
-                indexOfChar--;
-                // If the previous character was incorrect, decrement the mistake count
-                if (characters[indexOfChar].classList.contains("incorrect")) {
+            if (currentindex > 0) {
+                currentindex--;
+                //If the previous character was incorrect, decrement the mistake count
+                if (characters[currentindex].classList.contains("incorrect")) {
                     numOfMistakes--;
                 }
-                // Remove the "correct" and "incorrect" classes from the previous character
-                characters[indexOfChar].classList.remove("correct", "incorrect");
+                //Remove the "correct" and "incorrect" classes from the previous character
+                characters[currentindex].classList.remove("correct", "incorrect");
             }
-        // If the user types a character, check if it is correct
+        //If the user types a character, check if it is correct
         } else {
-            if (characters[indexOfChar].innerText == typedChar) {
-                characters[indexOfChar].classList.add("correct");
+            if (characters[currentindex].innerText == typedChar) {
+                characters[currentindex].classList.add("correct");
             } else {
-                // If the user typed the wrong character, increment the mistake count
+                //If the user typed the wrong character, increment the mistake count
                 numOfMistakes++;
-                characters[indexOfChar].classList.add("incorrect");
+                characters[currentindex].classList.add("incorrect");
             }
-            indexOfChar++;
+            currentindex++;
         }
-        // Remove the "active" class from all characters and add it to the current character
+        //Remove the "active" class from all characters and add it to the current character
         characters.forEach(span => span.classList.remove("active"));
-        characters[indexOfChar].classList.add("active");
+        characters[currentindex].classList.add("active");
 
-        // Update the WPM and mistake count displayed to the user
+        //Update the WPM and mistake count displayed to the user
         wpmTag.innerText = calcWPM();
         mistakeTag.innerText = numOfMistakes;
-    // If the user has typed all the characters or time has run out
-    } else {
-        
-        // Calculate the final WPM, mistakes, and accuracy
-        finalWPM = calcWPM();
-        finalMistakes = numOfMistakes;
-        finalAccuracy = Math.round((indexOfChar - numOfMistakes) / indexOfChar * 100);
-        // Display the final WPM, mistakes, and accuracy to the user
-        wpmRes.innerText = finalWPM;
-        mistakesRes.innerText = finalMistakes;
-        accuracyRes.innerText = finalAccuracy;
-        // Stop the timer and clear the input field
-        clearInterval(timer);
-        inpText.value = "";
-    }
+    //If the user has typed all the characters or time has run out
+    } 
 }
 
-// Calculates and returns the user's words per minute (WPM) score
+//Calculates and returns the user's words per minute (WPM) score
 function calcWPM() {
-    let wpm = Math.round(((indexOfChar - numOfMistakes) / 5) / (maxTime - timeRem) * 60);
+    let wpm = Math.round(((currentindex - numOfMistakes) / 5) / (maxTime - timeRem) * 60);
     
-    // Checks if the WPM score is invalid and sets it to zero if it is
+    //Checks if the WPM score is invalid and sets it to zero if it is
     if (wpm < 0 || !wpm || wpm === Infinity) {
         wpm = 0;
     } else {
@@ -115,37 +102,48 @@ function calcWPM() {
     return wpm;
 }
 
-// Initializes and updates the timer and WPM score display
+//Initializes and updates the timer and WPM score display
 function initialiseTimer() {
-    // Decrements the time remaining and updates the time display
-    if (timeRem > 0) {
+    //Decrements the time remaining and updates the time display
+    let characters = typingText.querySelectorAll("span");
+    if (currentindex != characters.length && timeRem > 0) {
         timeRem--;
         timeTag.innerText = timeRem;
         
-        // Calculates and updates the WPM score display
-        let wpm = Math.round(((indexOfChar - numOfMistakes) / 5) / (maxTime - timeRem) * 60);
-        wpmTag.innerText = wpm;
+        //Calculates and updates the WPM score display
+        wpmTag.innerText = calcWPM();
     } else {
+        //Calculate the final WPM, mistakes, and accuracy
+        finalWPM = calcWPM();
+        finalMistakes = numOfMistakes;
+        finalAccuracy = Math.round((currentindex - numOfMistakes) / currentindex * 100);
+        //Display the final WPM, mistakes, and accuracy to the user
+        wpmResult.innerText = finalWPM;
+        mistakesResult.innerText = finalMistakes;
+        accuracyResult.innerText = finalAccuracy + "%";
+        //Stop the timer and clear the input field
         clearInterval(timer);
+        inputText.value = "";
+
     }
 }
 
-// Resets the game and all relevant variables and displays
+//Resets the game and all relevant variables and displays
 function resetGame() {
-    // Loads a new paragraph, clears the timer, and resets all variables
+    //Loads a new paragraph, clears the timer, and resets all variables
     loadParagraph();
     clearInterval(timer);
     timeRem = maxTime;
-    indexOfChar = numOfMistakes = isTyping = 0;
+    currentindex = numOfMistakes = isTyping = 0;
     
-    // Resets the input text and all score displays
-    inpText.value = "";
+    //Resets the input text and all score displays
+    inputText.value = "";
     timeTag.innerText = timeRem;
     wpmTag.innerText = 0;
     mistakeTag.innerText = 0;
 }
 
-// Loads the initial paragraph and sets up event listeners for typing and reset
+//Loads the initial paragraph and sets up event listeners for typing and reset
 loadParagraph();
-inpText.addEventListener("input", Typing);
+inputText.addEventListener("input", Typing);
 againBtn.addEventListener("click", resetGame);
