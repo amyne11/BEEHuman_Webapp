@@ -1,9 +1,10 @@
-<?php
-include "backend/includes/auth-user.php";
-?>
+
 <!DOCTYPE html>
 <html>
 <head>
+    <?php
+    include "backend/includes/auth-user.php";
+    ?>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Reaction Test</title>

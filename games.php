@@ -1,10 +1,11 @@
-<?php
-include "backend/includes/auth-user.php";
-?>
+
 
 <!DOCTYPE html>
 <html lang="en" >
 <head>
+	<?php
+    include "backend/includes/auth-user.php";
+    ?>
   <meta charset="UTF-8">
 
   <link rel="icon" href="images/favicon.png">
