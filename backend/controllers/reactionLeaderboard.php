@@ -1,20 +1,16 @@
 <?php
 
 class ReactionLeaderboard extends Leaderboards {
-    private $username;
     private $newTime;
     private $recordTime;
+    private $username;
 
-    function __construct($name, $time)
-    {
-        $this->username = $name;
-        $this->newTime = $time;
-    }
-
-    public function store()
+    public function store($username, $time)
     {
         // compare recordtime and run update func if new record
         // if no record time run store
+
+        $this->insertScore("reaction", $username, $time);
     }
 
     public function update()
