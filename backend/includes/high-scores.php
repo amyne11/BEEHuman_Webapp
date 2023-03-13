@@ -1,6 +1,6 @@
 <?php
 
-include "backend/models/leaderboard.php";
+include "backend/models/leaderboards.php";
 
 
 ?>

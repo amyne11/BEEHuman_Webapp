@@ -17,6 +17,11 @@ class Leaderboards extends Db {
 
         $stmt->execute([$username, $score]);
     }
+
+    public static function selectResult($game, $username)
+    {
+        
+    }
 }
 
 ?>
