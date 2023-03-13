@@ -1,15 +1,12 @@
 <?php
 class Leaderboards extends Db {
-    private $username;
-    private $table;
-    private $columnName;
     
     protected function insertScore($game, $username, $score)
     {
-        $this->table = ucfirst($game) . "Table";
-        $this->columnName = $game . "Score";
+        $table = ucfirst($game) . "Table";
+        $columnName = $game . "Score";
 
-        $sql = "INSERT INTO {$this->table} (userName, {$this->columnName})
+        $sql = "INSERT INTO {$table} (userName, {$columnName})
                 VALUES (?, ?)";
         
         $stmt = $this->db->prepare($sql);
@@ -19,11 +16,11 @@ class Leaderboards extends Db {
 
     protected function updateScore($game, $username, $score)
     {
-        $this->table = ucfirst($game) . "Table";
-        $this->columnName = $game . "Score";
+        $table = ucfirst($game) . "Table";
+        $columnName = $game . "Score";
 
-        $sql = "UPDATE {$this->table} 
-                SET {$this->columnName} = ? 
+        $sql = "UPDATE {$table} 
+                SET {$columnName} = ? 
                 WHERE userName = ?";
         
         $stmt = $this->db->prepare($sql);
@@ -33,10 +30,10 @@ class Leaderboards extends Db {
 
     public function selectResult($game, $username)
     {
-        $this->table = ucfirst($game) . "Table";
-        $this->columnName = $game . "Score";
+        $table = ucfirst($game) . "Table";
+        $columnName = $game . "Score";
 
-        $sql = "SELECT {$this->columnName} FROM {$this->table} WHERE userName=?";
+        $sql = "SELECT {$columnName} FROM {$table} WHERE userName=?";
         
         $stmt = $this->db->prepare($sql);
         $stmt->execute([$username]);
@@ -53,10 +50,10 @@ class Leaderboards extends Db {
         $columns = array("typingScore", "barioScore", "reactionScore");
         $leaderboardArry = array(); //I don't know if we need to define the size of the array beforehand
         for ($i=0; $i<count($tables); $i++){
-            $this->table = $tables[$i];
-            $this->columnName = $columns[$i];
+            $table = $tables[$i];
+            $columnName = $columns[$i];
 
-            $sql = "SELECT {$this->columnName} FROM {$this->table} ORDER BY {$this->columnName} LIMIT 10";
+            $sql = "SELECT {$columnName} FROM {$table} ORDER BY {$columnName} LIMIT 10";
             
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
