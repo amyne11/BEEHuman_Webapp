@@ -33,7 +33,8 @@ function loadParagraph() {
     const randPara = Math.floor(Math.random() * paragraphs.length);
     typingText.innerHTML = "";
     //Split the paragraph into individual characters and add each character to the HTML as a <span>
-    paragraphs[randPara].split("").forEach(char => {
+    paragraphs[randPara].split("").forEach(char => 
+    {
         let span = `<span>${char}</span>`
         typingText.innerHTML += span;
     });
@@ -49,28 +50,37 @@ function Typing() {
     let characters = typingText.querySelectorAll("span");
     let typedChar = inputText.value.split("")[currentindex];
     //If there are still characters to type and time has not run out
-    if (currentindex < characters.length && timeRem > 0) {
+    if (currentindex < characters.length && timeRem > 0) 
+    {
         //If the user just started typing, start the timer
-        if (!isTyping) {
+        if (!isTyping) 
+        {
             timer = setInterval(initialiseTimer, 1000);
             isTyping = true;
         }
         //If the user backspaces, delete the previous character
-        if (typedChar == null) {
-            if (currentindex > 0) {
+        if (typedChar == null) 
+        {
+            if (currentindex > 0) 
+            {
                 currentindex--;
                 //If the previous character was incorrect, decrement the mistake count
-                if (characters[currentindex].classList.contains("incorrect")) {
+                if (characters[currentindex].classList.contains("incorrect")) 
+                {
                     numOfMistakes--;
                 }
                 //Remove the "correct" and "incorrect" classes from the previous character
                 characters[currentindex].classList.remove("correct", "incorrect");
             }
+        } 
         //If the user types a character, check if it is correct
-        } else {
-            if (characters[currentindex].innerText == typedChar) {
+        else {
+            if (characters[currentindex].innerText == typedChar) 
+            {
                 characters[currentindex].classList.add("correct");
-            } else {
+            }
+            else 
+            {
                 //If the user typed the wrong character, increment the mistake count
                 numOfMistakes++;
                 characters[currentindex].classList.add("incorrect");
@@ -84,16 +94,17 @@ function Typing() {
         //Update the WPM and mistake count displayed to the user
         wpmTag.innerText = calcWPM();
         mistakeTag.innerText = numOfMistakes;
-    //If the user has typed all the characters or time has run out
     } 
 }
 
 //Calculates and returns the user's words per minute (WPM) score
-function calcWPM() {
+function calcWPM() 
+{
     let wpm = Math.round(((currentindex - numOfMistakes) / 5) / (maxTime - timeRem) * 60);
     
     //Checks if the WPM score is invalid and sets it to zero if it is
-    if (wpm < 0 || !wpm || wpm === Infinity) {
+    if (wpm < 0 || !wpm || wpm === Infinity) 
+    {
         wpm = 0;
     } else {
         wpm = wpm;
@@ -103,16 +114,20 @@ function calcWPM() {
 }
 
 //Initializes and updates the timer and WPM score display
-function initialiseTimer() {
+function initialiseTimer() 
+{
     //Decrements the time remaining and updates the time display
     let characters = typingText.querySelectorAll("span");
-    if (currentindex != characters.length && timeRem > 0) {
+    if (currentindex != characters.length && timeRem > 0) 
+    {
         timeRem--;
         timeTag.innerText = timeRem;
         
         //Calculates and updates the WPM score display
         wpmTag.innerText = calcWPM();
-    } else {
+    } 
+    else 
+    {
         //Calculate the final WPM, mistakes, and accuracy
         finalWPM = calcWPM();
         finalMistakes = numOfMistakes;
@@ -129,7 +144,8 @@ function initialiseTimer() {
 }
 
 //Resets the game and all relevant variables and displays
-function resetGame() {
+function resetGame() 
+{
     //Loads a new paragraph, clears the timer, and resets all variables
     loadParagraph();
     clearInterval(timer);
