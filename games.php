@@ -5,6 +5,7 @@
 <head>
 	<?php
     include "backend/includes/auth-user.php";
+    include "backend/includes/high-scores.php";
     ?>
   <meta charset="UTF-8">
 
@@ -40,6 +41,7 @@
 				<div class="section">
 					<div class="section-in">
 						<img src="https://store-images.s-microsoft.com/image/apps.44553.0ed9f8e3-bf83-4e26-a8bb-f81e6dc3333b.f760a752-bdfb-4e26-ac51-d24f789d25fa.8487445c-a91c-43ff-a258-90757bd94ae6" alt="">
+						<p class="highscore">Record WPM:</p>
 					</div>
 				</div>
 			</div>
@@ -50,6 +52,7 @@
 				<div class="section">
 					<a href="reactionTest.php" class="section-in">
 						<img src="images/reaction.jpg" alt="">
+						<p class="highscore">Quickest time: <?php echo($_SESSION['reactionHighScore']); ?> seconds</p>
 					</a>
 				</div>
 			</div>
@@ -60,6 +63,7 @@
 				<div class="section">
 					<div class="section-in">
 						<img src="images/mario.jpg" alt="">
+						<p class="highscore">High Score:</p>
 					</div>
 				</div>
 			</div>

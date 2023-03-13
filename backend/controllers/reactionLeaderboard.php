@@ -11,11 +11,13 @@ class ReactionLeaderboard extends Leaderboards {
         // if no record time run store
 
         $this->insertScore("reaction", $username, $time);
+        $_SESSION['reactionHighScore'] = $time;
     }
 
-    public function update()
+    public function update($username, $time)
     {
-
+        $this->updateScore("reaction", $username, $time);
+        $_SESSION['reactionHighScore'] = $time;
     }
 
     public function recordTime()

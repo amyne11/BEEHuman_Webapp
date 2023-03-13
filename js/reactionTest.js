@@ -18,7 +18,6 @@ function storeScore() {
         time: time
     };
 
-
     fetch("backend/store-result.php", {
         method: "POST",
         headers: {
@@ -26,8 +25,12 @@ function storeScore() {
         },
         body: JSON.stringify(data)
     }).then(res => {
-        return res.text();
-    }).then(data => alert(data))
+        return res.json();
+    }).then(data => {
+        if (data['newHighScore']) {
+            alert("You achieved a new high score")
+        }
+    })
 }
 
 function startGame(){

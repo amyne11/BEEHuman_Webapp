@@ -193,6 +193,10 @@ p{
   transform: scale(1);
 }
 
+.highscore {
+  text-align: center;
+}
+
 
 
 
