@@ -17,12 +17,12 @@ body {
 
 /* Style for the paragraph element */
 #paragraph {
-    color: #ebedf0; /* Text color */
+    color: #ebedf0; 
 }
 
 /* Style for the currentStats class */
 .currentStats {
-    color: #ebedf0; /* Text color */
+    color: #ebedf0; 
 }
 
 /* Style for the selected text */
@@ -35,8 +35,8 @@ body {
 .wrapper {
     padding: 20px;
     width: 750px;
-    background: #1e1e1e; /* Background color */
-    border-radius: 40px; /* Rounded corners */
+    background: #1e1e1e; 
+    border-radius: 40px; 
 }
 
 /* Style for the inputText element inside wrapper */
@@ -49,14 +49,14 @@ body {
 /* Style for the contentBox element inside wrapper */
 .wrapper .contentBox {
     padding: 20px 30px 0;
-    border-radius: 40px; /* Rounded corners */
-    border: 2px solid #3d008e; /* Border color */
+    border-radius: 40px; 
+    border: 2px solid #3d008e; 
 }
 
 /* Style for the typingText element inside contentBox */
 .contentBox .typingText {
     overflow: scroll; /* Makes it scrollable */
-    max-height: 300px;
+    max-height: 200px;
 }
 
 /* Style for the scrollbar inside typingText */
@@ -74,9 +74,9 @@ body {
 
 /* Style for the p element inside typingText */
 .typingText p {
-    font-size: 18px; /* Font size */
-    letter-spacing: 1px; /* Spacing between letters */
-    text-align: justify; /* Text alignment */
+    font-size: 18px; 
+    letter-spacing: 1px; 
+    text-align: justify; 
     word-break: break-all; /* Breaks word to fit in the container */
 }
 
@@ -184,7 +184,7 @@ li:not(:first-child) span {
 }
 @media (max-width: 745px) {
     .wrapper {
-        padding: 20px;
+        padding: 50px;
     }
     .contentBox .content {
         padding: 20px 0;
