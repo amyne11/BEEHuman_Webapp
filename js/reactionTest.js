@@ -10,6 +10,29 @@ let li_index = 0
 let first = true;
 let changing = false;
 
+function storeScore() {
+    let time = document.getElementById("timer").innerHTML;
+    let username = document.querySelector('[name=username]').content;
+    let data = {
+        username: username,
+        time: time
+    };
+
+    fetch("backend/store-result.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).then(res => {
+        return res.json();
+    }).then(data => {
+        if (data['newHighScore']) {
+            alert("You achieved a new high score")
+        }
+    })
+}
+
 function startGame(){
     // When start button is clicked, game is set to its original state
     // lightTimer is then called so the lights start going green
@@ -123,6 +146,7 @@ function stopTimer(){
 	console.log("stop clicked")
 	clearInterval(interval)
 	running = false
+    storeScore();
 }
 
 function resetTimer(){
