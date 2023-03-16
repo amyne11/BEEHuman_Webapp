@@ -39,10 +39,10 @@
 		<div class="section-row">	
 			<div class="section-col">
 				<div class="section">
-					<div class="section-in">
+					<a href="typingTest.php" class="section-in">
 						<img src="https://store-images.s-microsoft.com/image/apps.44553.0ed9f8e3-bf83-4e26-a8bb-f81e6dc3333b.f760a752-bdfb-4e26-ac51-d24f789d25fa.8487445c-a91c-43ff-a258-90757bd94ae6" alt="">
 						<p class="highscore">Record WPM:</p>
-					</div>
+					</a>
 				</div>
 			</div>
 			<div class="hover-text">
