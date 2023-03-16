@@ -1,0 +1,232 @@
+/* Global Reset */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Style for the body */
+body {
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 120vh; /* Pushes it down */
+    background: linear-gradient(#34024e, #930084, #7901c8); /* Background color gradient */
+}
+
+/* Style for the paragraph element */
+#paragraph {
+    color: #ebedf0; 
+}
+
+/* Style for the currentStats class */
+.currentStats {
+    color: #ebedf0; 
+}
+
+/* Style for the selected text */
+::selection {
+    color: #2c1616;
+    background: #007acc;
+}
+
+/* Style for the wrapper element */
+.wrapper {
+    padding: 20px;
+    width: 750px;
+    background: #1e1e1e; 
+    border-radius: 40px; 
+}
+
+/* Style for the inputText element inside wrapper */
+.wrapper .inputText {
+    opacity: 0;
+    z-index: -1000; /* Hides it from view */
+    position: absolute;
+}
+
+/* Style for the contentBox element inside wrapper */
+.wrapper .contentBox {
+    padding: 20px 30px 0;
+    border-radius: 40px; 
+    border: 2px solid #3d008e; 
+}
+
+/* Style for the typingText element inside contentBox */
+.contentBox .typingText {
+    overflow: scroll; /* Makes it scrollable */
+    max-height: 200px;
+}
+
+/* Style for the scrollbar inside typingText */
+.typingText::-webkit-scrollbar {
+    background-color: #1e1e1e;
+    width: 5px;
+    padding: 1px;
+}
+
+/* Style for the scrollbar thumb inside typingText */
+.typingText::-webkit-scrollbar-thumb {
+    background-color: #a7a4a4;
+    padding: 10px;
+}
+
+/* Style for the p element inside typingText */
+.typingText p {
+    font-size: 18px; 
+    letter-spacing: 1px; 
+    text-align: justify; 
+    word-break: break-all; /* Breaks word to fit in the container */
+}
+
+/* Style for the span element inside p element of typingText */
+.typingText p span {
+    position: relative;
+}
+
+/* Style for the correct span element inside p element of typingText */
+.typingText p span.correct {
+    color: #00ff04; /* Color when typed correctly */
+}
+
+/* Style for the incorrect span element inside p element of typingText */
+.typingText p span.incorrect {
+    color: #ca4754; /* Color when typed incorrectly */
+}
+
+/* Style for the active span element inside p element of typingText */
+.typingText p span.active::before {
+    position: absolute; /* Positioning for the blink effect */
+    content: "";
+    height: 2px;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: 5px;
+    background: #007acc;
+    animation: blink 1s ease-in-out infinite; /* Animation for the blink effect */
+}
+
+/* Animation for the blink effect */
+@keyframes blink {
+    50% {
+        opacity: 1;
+    }
+}
+
+.contentBox .content {
+    padding: 12px 0;
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 2px solid #007acc;
+}
+
+
+.content button {
+    outline: none;
+    border: none;
+    width: 100px;
+    color: #007acc;
+    font-size: 16px;
+    background-color: #1e1e1e;
+    cursor: pointer;
+    border-radius: 15px;
+    border: 3px solid #007acc;
+    transition: transform 0.1s ease;
+    margin-left: auto;
+    margin-right: 0;
+    width: 100%;
+}
+
+
+.content button:active {
+    transform: scale(0.95);
+}
+.content button:hover {
+    background: #FFFFFF;
+}
+.content .currentStats {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    width: calc(100% - 140px);
+    justify-content: space-between;
+}
+.currentStats li {
+    display: flex;
+    height: 20px;
+    list-style: none;
+    position: relative;
+    align-items: center;
+}
+.currentStats li:not(:first-child) {
+    padding-left: 22px;
+    border-left: 2px solid #bfbfbf;
+}
+.currentStats li p {
+    font-size: 13px;
+}
+.currentStats li span {
+    display: block;
+    font-size: 13px;
+    margin-left: 10px;
+}
+li span b {
+    font-weight: 500;
+}
+li:not(:first-child) span {
+    font-weight: 500;
+}
+@media (max-width: 745px) {
+    .wrapper {
+        padding: 50px;
+    }
+    .contentBox .content {
+        padding: 20px 0;
+    }
+    .contentBox .typingText {
+        max-height: 100%;
+    }
+    .typingText p {
+        font-size: 19px;
+        text-align: left;
+    }
+    .content button {
+        width: 100%;
+        font-size: 15px;
+        padding: 10px 0;
+        margin-top: 20px;
+    }
+    .content .currentStats {
+        width: 100%;
+    }
+    .currentStats li:not(:first-child) {
+        border-left: 0;
+        padding: 0;
+    }
+    .currentStats li p,
+    .currentStats li span {
+        font-size: 15px;
+    }
+}
+@media (max-width: 518px) {
+    .wrapper .contentBox {
+        padding: 10px 15px 0;
+    }
+    .typingText p {
+        font-size: 13px;
+    }
+    .currentStats li {
+        margin-bottom: 10px;
+    }
+    .content button {
+        margin-top: 10px;
+    }
+}
+
+
