@@ -18,7 +18,7 @@ function storeScore() {
         time: time
     };
 
-    fetch("backend/store-result.php", {
+    fetch("backend/store-time.php", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

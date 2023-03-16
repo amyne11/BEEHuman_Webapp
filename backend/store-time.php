@@ -9,10 +9,10 @@ if (isset($_POST)) {
     $data = json_decode($encodedData, true);
 
     if ($_SESSION['reactionHighScore'] == "N/A") {
-        $leaderboard = new reactionLeaderboard();
+        $leaderboard = new ReactionLeaderboard();
         $leaderboard->store($data['username'], $data['time']);
     } elseif ($data['time'] < $_SESSION['reactionHighScore']) {
-        $leaderboard = new reactionLeaderboard();
+        $leaderboard = new ReactionLeaderboard();
         $leaderboard->update($data['username'], $data['time']);
     } else {
         die(json_encode([

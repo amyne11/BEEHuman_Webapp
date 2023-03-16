@@ -84,7 +84,7 @@ body {
     font-size: 18px; 
     letter-spacing: 1px; 
     text-align: justify; 
-    word-break: break-all; /* Breaks word to fit in the container */
+    /*word-break: break-all;  Breaks word to fit in the container */
 }
 
 /* Style for the span element inside p element of typingText */
