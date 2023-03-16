@@ -37,7 +37,7 @@ Colors:
 body,
 html {
     width: 100%;
-	height: 100%;
+	height: 100vh;
 }
 
 body, p {
@@ -256,7 +256,6 @@ a:hover {
 	font-size: 1rem;
 	line-height: 1.5rem;
 	font-family: "Poppins";
-	-webkit-appearance: none; /* removes inner shadow on form inputs on ios safari */
 }
 
 ::placeholder {
@@ -376,6 +375,7 @@ a:hover {
 /******************/
 header {
 	padding-top: 13rem;
+	height: 100%;
 	padding-bottom: 9rem;
 	background: linear-gradient(to bottom right, black, rgba(216, 21, 200, 3));
 	color: #57e48d;

@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <?php
+        include "backend/includes/auth-user.php";
+        ?>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
@@ -21,26 +24,23 @@
         <title>Typing Test</title>
 
         <!-- Styles -->
-        <link href="typingtestv2.css" rel="stylesheet" >
-        <link href="./typingtestgame.css" rel="stylesheet">
+        <link href="css/typingtestv2.css" rel="stylesheet" >
+        <link href="css/typingtestgame.css" rel="stylesheet">
 
         <!-- Favicon  -->
         <link rel="icon" href="images/favicon.png">
 
         <!-- Javascript -->
-        <script defer src="typingtestv2.js"></script>
+        <script defer src="js/typingtestv2.js"></script>
         
     </head> 
 <body>
     <!-- Navigation -->
-    <div class="navbar">
+    <!-- <div class="navbar">
         <div class="container flex">
 
-            <!-- Image Logo -->
-            <a class="logo-image" href="index.html"><img src="logoproj.png" alt="alternative"></a>
+            <a class="logo-image" href="index.html"><img src="images/logoproj.png" alt="alternative"></a>
 
-            <!-- Text Logo - Use this if you don't have a graphic logo -->
-            <!-- <a class="logo-text" href="index.html">Name</a> -->
 
             <nav>
                 <ul >
@@ -50,10 +50,10 @@
                     <li><a href="../login/css-only-accessible-floating-labels-advanced-version/dist/login-page.html">Logout</a></li>
                 </ul>
             </nav>
-        </div> <!-- end of container -->
-    </div> <!-- end of navbar -->
+        </div> 
+    </div>  -->
     <!-- end of navigation -->
-
+    <h1 id="title">Typing Test!</h1>
     <!-- Wrapper -->
     <div class="wrapper">
         <!-- Input text box -->

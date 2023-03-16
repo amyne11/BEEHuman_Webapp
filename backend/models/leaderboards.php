@@ -39,7 +39,7 @@ class Leaderboards extends Db {
         $stmt->execute([$username]);
         $score = $stmt->fetch();
         if ($score == false) {
-            return array("reactionScore" => "N/A");
+            return array($game."Score" => "N/A");
         }
         return $score;
     }

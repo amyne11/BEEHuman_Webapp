@@ -28,6 +28,30 @@ let finalWPM = 0;
 let finalMistakes = 0;
 let finalAccuracy = 0;
 
+//Submits WPM to server 
+function submitWPM(WPM)
+{
+    let username = document.querySelector('[name=username]').content;
+    let data = {
+        username: username,
+        WPM: WPM
+    };
+
+    fetch("backend/store-typing.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+    }).then(res => {
+        return res.json();
+    }).then(data => {
+        if (data['newHighScore']) {
+            alert("You achieved a new high score")
+        }
+    })
+}
+
 //Load a random paragraph for the user to type
 function loadParagraph() 
 {
@@ -139,6 +163,7 @@ function initialiseTimer()
     {
         //Calculate the final WPM, mistakes, and accuracy
         finalWPM = calcWPM();
+        console.log(finalWPM);
         finalMistakes = numOfMistakes;
         finalAccuracy = Math.round((currentindex - numOfMistakes) / currentindex * 100);
         //Display the final WPM, mistakes, and accuracy to the user
@@ -148,6 +173,7 @@ function initialiseTimer()
         //Stop the timer and clear the input field
         clearInterval(timer);
         inputText.value = "";
+        submitWPM(finalWPM);
     }
 }
 

@@ -11,8 +11,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
     min-height: 120vh; /* Pushes it down */
     background: linear-gradient(#34024e, #930084, #7901c8); /* Background color gradient */
+}
+
+#title {
+    color: rgb(22, 186, 36);
+    text-shadow: 0 0 6px lightgreen;
+    margin-top: 2%;
 }
 
 /* Style for the paragraph element */
@@ -77,7 +84,7 @@ body {
     font-size: 18px; 
     letter-spacing: 1px; 
     text-align: justify; 
-    word-break: break-all; /* Breaks word to fit in the container */
+    /*word-break: break-all;  Breaks word to fit in the container */
 }
 
 /* Style for the span element inside p element of typingText */
