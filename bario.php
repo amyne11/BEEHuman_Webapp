@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-US">
   <head>
-    <link href="..\first_group_project\bariobg.css" rel="stylesheet">
+    <?php
+    include "backend/includes/auth-user.php";
+    ?>
+    <link href="css/bariobg.css" rel="stylesheet">
     <meta charset="utf-8" />
     <title>Bario</title>
     <style>
@@ -692,7 +695,32 @@
         screen.fillText("Your score was: " + score, canvas.width/2, canvas.height/2)
         screen.fillText("Press enter to play again!", canvas.width/2, canvas.height/1.7)
         game_started = false;
+        storeScore(score);
       }
+
+      function storeScore(score)
+      {
+        let username = document.querySelector('[name=username]').content;
+        let data = {
+          username: username,
+          score: score
+        };
+
+        fetch("backend/store-bario.php", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(data)
+        }).then(res => {
+          return res.json();
+        }).then(data => {
+          if (data['newHighScore']) {
+            alert("You achieved a new high score")
+          }
+    })
+      }
+
       function gen_trn() {
         let activer = false;
         screen.clearRect(0, 0, canvas.width, canvas.height);
@@ -851,12 +879,12 @@
       document.addEventListener("keydown", keyDownHandler, false);
       document.addEventListener("keyup", keyUpHandler, false);
       function keyDownHandler(e) {
-        if (e.key == "Right" || e.key == "ArrowRight") {
+        if (e.key == "Right" || e.key == "ArrowRight" || e.key == "d") {
           rightPressed = true;
           if (!cycleIP) {
             rightcycle();
           }
-        } else if (e.key == "Left" || e.key == "ArrowLeft") {
+        } else if (e.key == "Left" || e.key == "ArrowLeft" || e.key == "a") {
           leftPressed = true;
           if (!cycleIP) {
             leftcycle();
@@ -879,9 +907,9 @@
         }
       }
       function keyUpHandler(e) {
-        if (e.key == "Right" || e.key == "ArrowRight") {
+        if (e.key == "Right" || e.key == "ArrowRight" || e.key == "d") {
           rightPressed = false;
-        } else if (e.key == "Left" || e.key == "ArrowLeft") {
+        } else if (e.key == "Left" || e.key == "ArrowLeft" || e.key == "a") {
           leftPressed = false;
         } else if (e.key == "Space" || e.key == " " || e.key == 32) {
           spacePressed = false;

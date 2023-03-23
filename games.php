@@ -61,10 +61,10 @@
 			</div>
 			<div class="section-col">
 				<div class="section">
-					<div class="section-in">
+					<a href="bario.php" class="section-in">
 						<img src="images/mario.jpg" alt="">
 						<p class="highscore">High Score: <?php echo($_SESSION['barioHighScore']); ?></p>
-					</div>
+					</a>
 				</div>
 			</div>
 			<div class="hover-text">
