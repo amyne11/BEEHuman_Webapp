@@ -47,13 +47,13 @@ session_start();
                 <nav>
                     <ul >
                         <li><a href="games.php">Games</a></li>
-                        <li><a href="#contact">Contact</a></li>
 
 
                         <?php
                         if (isset($_SESSION["logged"])) 
                         {
                         ?>
+                            <li><a href="leaderboard.php">Leaderboards</a></li>
                             <li><a href="backend/logout.php">Logout</a></li>
                         <?php
                         } else 

@@ -23,7 +23,7 @@
 
 		<nav class="navbar">
 			<ul>
-				<li><a href="index.php" class="homepage">Home</a></li>
+				<li><a href="leaderboard.php" class="homepage">Leaderboards</a></li>
 				<li class="games">Games</li>
 
 				<li>

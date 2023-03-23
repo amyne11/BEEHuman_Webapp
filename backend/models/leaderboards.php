@@ -46,23 +46,22 @@ class Leaderboards extends Db {
 
     public function selectResults()
     {
-        $tables = array("TypingTable", "BarioTable", "ReactionTest");
+        $tables = array("TypingTable", "BarioTable", "ReactionTable");
         $columns = array("typingScore", "barioScore", "reactionScore");
         $leaderboardArry = array(); //I don't know if we need to define the size of the array beforehand
         for ($i=0; $i<count($tables); $i++){
             $table = $tables[$i];
             $columnName = $columns[$i];
 
-            $sql = "SELECT {$columnName} FROM {$table} ORDER BY {$columnName} LIMIT 10";
+            $sql = "SELECT {$columnName}, userName, timeAchieved FROM {$table} ORDER BY {$columnName} DESC LIMIT 10";
             
             $stmt = $this->db->prepare($sql);
             $stmt->execute();
-            $scores = $stmt->fetch();
+            $scores = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $leaderboardArry[$i] = $scores;
         }
         $leaderboardArry[2] = array_reverse($leaderboardArry[2]); //'2' is the position of the reaction test in the array
-        die(var_dump($leaderboardArry));
-        // return $leaderboardArry;
+        return $leaderboardArry;
     }
 }
 
