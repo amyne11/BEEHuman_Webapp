@@ -166,6 +166,7 @@ function initialiseTimer()
         console.log(finalWPM);
         finalMistakes = numOfMistakes;
         finalAccuracy = Math.round((currentindex - numOfMistakes) / currentindex * 100);
+        finalWPM = Math.round((finalAccuracy*0.01)*finalWPM);
         //Display the final WPM, mistakes, and accuracy to the user
         wpmResult.innerText = finalWPM;
         mistakesResult.innerText = finalMistakes;
